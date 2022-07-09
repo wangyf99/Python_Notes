@@ -1,0 +1,29 @@
+#Contrary things found in how Python deals with backslash "\"
+a = "It\'s raining"
+print(a)
+a
+
+s = "this\\has\\no\\special\\characters"
+print(s)
+s
+
+>>> r'\'
+  File "<stdin>", line 1
+    r'\'
+       ^
+SyntaxError: EOL while scanning string literal
+>>> r'\\'
+'\\\\'
+>>> r'\\\'
+  File "<stdin>", line 1
+    r'\\\'
+# https://stackoverflow.com/questions/647769/why-cant-pythons-raw-string-literals-end-with-a-single-backslash
+#any character following a backslash is part of raw string.
+# When an 'r' or 'R' prefix is present, a character following a backslash is included in the string without change, 
+# and all backslashes are left in the string
+# for repr, \ represented by ""
+# for str (applied when using print), \ represented by \\
+# "" represented by \, 不够准确，准确的说法是，\会将后面的character consider as a character.
+# \\ represented by \\\\
+# 因此，"\"没有办法被represent，因为它会被escape，如果要represent,必须用print
+# new line represented by \n
